@@ -1,0 +1,23 @@
+{
+  "Login": {
+    "Title": "Логін",
+    "Button": "Вхід",
+    "EmailLabel": "Пошта",
+    "PasswordLabel": "Пароль",
+    "UsernameLabel": "Username"
+  },
+  "Errors": {
+    "Required": "Обов'язково",
+    "InvalidEmail": "Недійсний email",
+    "Min6": "Потрібно мінімум 6 символів",
+    "Max30": "Потрібно максимум 30 символів",
+    "UserNotFound": "Користувач не знайдений" ,
+    "IncorrectPassword": "Incorrect password"
+  },
+  "Menu": {
+    "Profile": "Профіль",
+    "Logout": "Вийти",
+    "MyQuestions": "Мої запитання",
+    "Favorites": "Вибрані"
+  }
+}

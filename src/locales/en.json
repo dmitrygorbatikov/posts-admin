@@ -1,0 +1,23 @@
+{
+  "Login": {
+    "Title": "Login",
+    "Button": "Login",
+    "EmailLabel": "Email",
+    "PasswordLabel": "Password",
+    "UsernameLabel": "Username"
+  },
+  "Errors": {
+    "Required": "Required",
+    "InvalidEmail": "Invalid email",
+    "Min6": "Minimum 6 characters required",
+    "Max30": "Maximum 30 characters required",
+    "UserNotFound": "User not found" ,
+    "IncorrectPassword": "Incorrect password"
+  },
+  "Menu": {
+    "Profile": "Profile",
+    "Logout": "Logout",
+    "MyQuestions": "My questions",
+    "Favorites": "Favorites"
+  }
+}
