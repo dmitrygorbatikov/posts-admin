@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import React from "react";
-import SignInPage from "../pages/SignInPage";
-import PostsPage from "../pages/PostsPage";
-import ProfilePage from "../pages/ProfilePage";
+import SignInPage from "../pages/SignInPage/SignInPage";
+import PostsPage from "../pages/PostsPage/PostsPage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 
 const useRoutes = (isAuthenticated: boolean) => {
   if (!isAuthenticated) {

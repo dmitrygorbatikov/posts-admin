@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Menu from "./components/Menu";
-import Toast from "./components/Toast";
+import Menu from "./components/Menu/Menu";
 import useRoutes from "./routes";
 import { observer } from "mobx-react";
 import AuthStore from "./mobx/auth";
@@ -12,7 +11,6 @@ function App() {
   return (
     <BrowserRouter>
       <Menu />
-      <Toast />
       {routes}
     </BrowserRouter>
   );

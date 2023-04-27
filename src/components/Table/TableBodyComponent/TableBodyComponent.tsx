@@ -3,12 +3,15 @@ import TableCell from "@mui/material/TableCell";
 import Checkbox from "@mui/material/Checkbox";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
+import moment from "moment";
+import styles from "./TableBodyComponent.module.scss";
 
 interface ITableBodyProps {
   row: any;
   selected: any;
   setSelected: (value: any) => void;
   index: number;
+  header: { [key: string]: { name: string; sort?: boolean; isDate?: boolean } };
 }
 
 const TableBodyComponent: FC<ITableBodyProps> = ({
@@ -16,6 +19,7 @@ const TableBodyComponent: FC<ITableBodyProps> = ({
   selected,
   setSelected,
   index,
+  header,
 }) => {
   const isSelected = (link: string) => {
     return selected.indexOf(link) !== -1;
@@ -51,7 +55,7 @@ const TableBodyComponent: FC<ITableBodyProps> = ({
       tabIndex={-1}
       key={row._id}
       selected={isItemSelected}
-      sx={{ cursor: "pointer", maxWidth: 500 }}
+      className={styles.row}
     >
       <TableCell padding="checkbox">
         <Checkbox
@@ -63,14 +67,18 @@ const TableBodyComponent: FC<ITableBodyProps> = ({
         />
       </TableCell>
       {Object.keys(row).map((key, index) => {
+        const data = header[key]?.isDate
+          ? moment(row[key]).format("DD.MM.YYYY hh:ss")
+          : row[key];
+
         if (key !== "_id") {
           return (
             <TableCell
-              sx={{ maxWidth: 900, wordWrap: "break-word" }}
+              className={styles.cell}
               key={`${row._id}-${index}`}
               align="right"
             >
-              {row[key]}
+              {data}
             </TableCell>
           );
         }

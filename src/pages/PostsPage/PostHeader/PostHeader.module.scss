@@ -1,0 +1,13 @@
+.container {
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  background-color: #fff;
+  z-index: 100;
+  &__flex {
+    margin: 10px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

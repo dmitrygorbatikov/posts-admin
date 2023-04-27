@@ -9,6 +9,8 @@ import {
 } from "./types";
 import PostServices from "../../services/post.services";
 import { createQuery } from "../../utils";
+import AuthStore from "../auth";
+import { IRequestError } from "../../types";
 
 class PostStore {
   posts: IPost[] = [];
@@ -25,18 +27,24 @@ class PostStore {
   };
   selected: string[] = [];
   count: number = 0;
+  createPostErrors?: IRequestError;
+  updatePostErrors?: IRequestError;
   constructor() {
     makeAutoObservable(this, {}, {});
   }
 
   getPosts = async (filters: IPostFilter) => {
-    this.loading = true;
-    const { posts, count } = await PostServices.getPosts(filters);
-    this.posts = posts;
-    this.count = count;
+    try {
+      this.loading = true;
+      const { posts, count } = await PostServices.getPosts(filters);
+      this.posts = posts;
+      this.count = count;
 
-    this.setFilters(filters);
-    this.loading = false;
+      this.setFilters(filters);
+      this.loading = false;
+    } catch (e) {
+      this.posts = [];
+    }
   };
 
   setFilters = (filters: IPostFilter) => {
@@ -46,27 +54,49 @@ class PostStore {
     this.filters = filters;
   };
 
-  createPost = async (body: ICreatePostBody) => {
-    this.postLoading = true;
-    await PostServices.createPost(body);
-    await this.getPosts({
-      ...this.filters,
-      sort: SortEnum.DESC,
-      sortBy: SortNamesEnum.created_at,
-      search: undefined,
-      page: "0",
-    });
-    this.setSelected([]);
+  createPost = async (body: ICreatePostBody, cb: () => void) => {
+    try {
+      this.postLoading = true;
+      await PostServices.createPost(body);
+      await this.getPosts({
+        ...this.filters,
+        sort: SortEnum.DESC,
+        sortBy: SortNamesEnum.created_at,
+        search: undefined,
+        page: "0",
+      });
+      this.setSelected([]);
+      cb();
 
-    this.postLoading = false;
+      this.postLoading = false;
+    } catch (e: any) {
+      this.postLoading = false;
+      if (e.response.data.user) {
+        AuthStore.logoutUser();
+        document.location.reload();
+      } else {
+        this.createPostErrors = e.response.data;
+      }
+    }
   };
 
-  updatePost = async (body: IUpdatePostBody, _id: string) => {
-    this.postLoading = true;
-    await PostServices.updatePost(body, _id);
-    await this.getPosts(this.filters);
-    this.setSelected([]);
-    this.postLoading = false;
+  updatePost = async (body: IUpdatePostBody, _id: string, cb: () => void) => {
+    try {
+      this.postLoading = true;
+      await PostServices.updatePost(body, _id);
+      await this.getPosts(this.filters);
+      this.setSelected([]);
+      this.postLoading = false;
+      cb();
+    } catch (e: any) {
+      this.postLoading = false;
+      if (e.response.data.user) {
+        AuthStore.logoutUser();
+        document.location.reload();
+      } else {
+        this.updatePostErrors = e.response.data;
+      }
+    }
   };
 
   removeList = async (ids: string[]) => {
@@ -81,6 +111,11 @@ class PostStore {
 
   setSelected = (selected: string[]) => {
     this.selected = selected;
+  };
+
+  clearErrors = () => {
+    this.createPostErrors = undefined;
+    this.updatePostErrors = undefined;
   };
 }
 

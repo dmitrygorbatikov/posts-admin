@@ -10,3 +10,13 @@ export enum UserRoleEnum {
   user = "user",
   admin = "admin",
 }
+
+export interface IChangePasswordBody {
+  oldPassword: string
+  newPassword: string
+}
+
+export interface IChangeProfile {
+  name: string
+  email: string
+}

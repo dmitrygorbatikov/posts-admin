@@ -1,23 +1,61 @@
 {
   "Login": {
-    "Title": "Логін",
-    "Button": "Вхід",
-    "EmailLabel": "Пошта",
-    "PasswordLabel": "Пароль",
-    "UsernameLabel": "Username"
+    "Title": "Увійти",
+    "Button": "Увійти",
+    "EmailLabel": "Електронна пошта",
+    "PasswordLabel": "Пароль"
+  },
+  "Posts": {
+    "LogoText": "Пости",
+    "Search": "Пошук",
+    "Title": "Назва",
+    "Link":"Посилання",
+    "Description": "Опис",
+    "PubDate":"Дата публікації",
+    "CreatedAt": "Створено",
+    "Selected": "вибрано",
+    "EditButton": "Редагувати",
+    "NewPost": "Новий пост",
+    "CreateNewPost": "Створити новий пост",
+    "Create": "Створити",
+    "EditPost": "Редагувати пост",
+    "Save": "Зберегти",
+    "Cancel": "Скасувати",
+    "AreYouSureDelBtn": "Ви впевнені, що хочете видалити ці записи?",
+    "Delete": "Видалити",
+    "Page": "Сторінка",
+    "RowsPerPage": "Рядків на сторінці"
+  },
+  "Profile": {
+    "Title": "Профіль",
+    "NameLabel": "Ім'я",
+    "EmailLabel": "Електронна пошта",
+    "Name": "ім'я",
+    "Email": "електронна пошта",
+    "CreatedAt": "створено",
+    "Save": "Зберегти",
+    "ChangePassword": "Змінити пароль",
+    "OldPassword": "Старий пароль",
+    "NewPassword": "Новий пароль",
+    "RepeatNewPassword": "Повторіть новий пароль",
+    "Change": "Змінити"
   },
   "Errors": {
     "Required": "Обов'язково",
-    "InvalidEmail": "Недійсний email",
-    "Min6": "Потрібно мінімум 6 символів",
-    "Max30": "Потрібно максимум 30 символів",
-    "UserNotFound": "Користувач не знайдений" ,
-    "IncorrectPassword": "Incorrect password"
+    "InvalidEmail": "Неправильна електронна пошта",
+    "Min6": "Мінімум 6 символів",
+    "Max30": "Максимум 30 символів",
+    "UserNotFound": "Користувача не знайдено",
+    "IncorrectPassword": "Неправильний пароль",
+    "IncorrectOldPassword": "Неправильний старий пароль",
+    "UserAlreadyExist": "Користувач вже існує",
+    "LinkAlreadyExist": "Посилання вже існує",
+    "NotEnoughRights": "Недостатньо прав",
+    "PasswordsMustMatch": "Паролі повинні співпадати",
+    "EmailMustBeAValidEmail": "Електронна адреса має бути дійсною"
   },
   "Menu": {
     "Profile": "Профіль",
-    "Logout": "Вийти",
-    "MyQuestions": "Мої запитання",
-    "Favorites": "Вибрані"
+    "Logout": "Вийти"
   }
 }

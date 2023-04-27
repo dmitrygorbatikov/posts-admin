@@ -52,11 +52,11 @@ const LanguageMenu: FC = () => {
       >
         <MenuItem onClick={() => changeLanguage("ua")}>
           <Flag code={"UA"} height="16" />
-          <Box sx={{ ml: 1 }}>Українська</Box>
+          <Box className={styles.language_box}>Українська</Box>
         </MenuItem>
         <MenuItem onClick={() => changeLanguage("en")}>
           <Flag code={"US"} height="16" />
-          <Box sx={{ ml: 1 }}>English</Box>
+          <Box className={styles.language_box}>English</Box>
         </MenuItem>
       </Menu>
     </div>

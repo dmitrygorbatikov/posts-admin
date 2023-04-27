@@ -7,10 +7,11 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import Box from "@mui/material/Box";
 import { visuallyHidden } from "@mui/utils";
 import { FC } from "react";
-import { SortEnum } from "../../mobx/post/types";
+import { SortEnum } from "../../../mobx/post/types";
+import styles from "./TableHeader.module.scss";
 
 interface ITableHeaderProps {
-  header: { [key: string]: { name: string; sort?: boolean } };
+  header: { [key: string]: { name: string; sort?: boolean; isDate?: boolean } };
   filters: { [key: string]: any };
   numSelected: number;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -69,6 +70,7 @@ const TableHeader: FC<ITableHeaderProps> = (props: ITableHeaderProps) => {
                 sortDirection={sortBy === header[field].name ? sort : false}
               >
                 <TableSortLabel
+                  className={styles.header_text}
                   active={sortBy === field}
                   direction={sortBy === field ? sort : "asc"}
                   onClick={() => sortData(field)}
@@ -87,6 +89,7 @@ const TableHeader: FC<ITableHeaderProps> = (props: ITableHeaderProps) => {
           }
           return (
             <TableCell
+              className={styles.header_text}
               key={header[field].name}
               align={"right"}
               padding={"normal"}

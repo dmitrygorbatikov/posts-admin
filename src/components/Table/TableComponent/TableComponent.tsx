@@ -6,14 +6,17 @@ import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import Paper from "@mui/material/Paper";
 import { FC, useEffect, useState } from "react";
-import TableHeader from "./TableHeader";
-import CustomInput from "../Input/CustomInput";
-import TableBodyComponent from "./TableBodyComponent";
+import TableHeader from "../TableHeader/TableHeader";
+import CustomInput from "../../Input/CustomInput/CustomInput";
+import TableBodyComponent from "../TableBodyComponent/TableBodyComponent";
 import { Typography } from "@mui/material";
+import { ITableHeaderProps } from "../../../types";
+import styles from "./TableComponent.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface ITableComponentProps {
   rows: any[];
-  header: { [key: string]: { name: string; sort?: boolean } };
+  header: ITableHeaderProps;
   filters: { [key: string]: any };
   fetchData: (filters: { [key: string]: any }) => void;
   count: number;
@@ -31,9 +34,9 @@ const TableComponent: FC<ITableComponentProps> = ({
   selected,
   setSelected,
 }) => {
+  const { t } = useTranslation();
   rows = rows.map((item) => {
     const _item = item;
-    // delete _item._id;
     delete _item.updated_at;
     delete _item.__v;
     return _item;
@@ -70,13 +73,13 @@ const TableComponent: FC<ITableComponentProps> = ({
   }, [filters.page]);
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+    <Box className={styles.container}>
+      <Paper className={styles.container__paper}>
         {rows.length > 0 && (
           <>
             <TableContainer>
               <Table
-                sx={{ minWidth: 750, mt: 28.5 }}
+                className={styles.container__table}
                 aria-labelledby="tableTitle"
                 size={"medium"}
               >
@@ -92,6 +95,7 @@ const TableComponent: FC<ITableComponentProps> = ({
                   {rows.map((row, index) => {
                     return (
                       <TableBodyComponent
+                        header={header}
                         row={row}
                         selected={selected}
                         setSelected={setSelected}
@@ -103,17 +107,15 @@ const TableComponent: FC<ITableComponentProps> = ({
               </Table>
             </TableContainer>
             <Box
+              className={styles.container__pagination}
               sx={{
                 pointerEvents: selected.length === 1 ? "none" : "auto",
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
               }}
             >
               <CustomInput
-                sx={{ maxWidth: 65 }}
+                className={styles.container__pagination__input}
                 value={pageInput}
-                label={"Page"}
+                label={t("Posts.Page")}
                 changeHandler={(e) => setPageInput(e.target.value)}
                 handleSubmit={() => handleChangePage(Number(pageInput))}
               />
@@ -121,6 +123,7 @@ const TableComponent: FC<ITableComponentProps> = ({
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
                 count={count}
+                labelRowsPerPage={t("Posts.RowsPerPage")}
                 rowsPerPage={Number(filters.perPage)}
                 page={Number(filters.page)}
                 onPageChange={(event, newPage) => handleChangePage(newPage)}
@@ -130,7 +133,7 @@ const TableComponent: FC<ITableComponentProps> = ({
           </>
         )}
         {rows.length === 0 && (
-          <Box sx={{ pt: 28.5, pb: 4, ml: 2 }}>
+          <Box className={styles.container__no_data}>
             <Typography>No data found</Typography>
           </Box>
         )}
