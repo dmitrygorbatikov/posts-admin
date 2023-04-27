@@ -2,7 +2,7 @@ import { ISignInUserBody } from "../mobx/auth/types";
 import axios from "axios";
 
 class AuthServices {
-  private baseUrl = `${"http://localhost:6001"}/auth`;
+  private baseUrl = `${process.env.REACT_APP_API_URL}/auth`;
 
   async signInUser(body: ISignInUserBody) {
     return axios
@@ -10,7 +10,6 @@ class AuthServices {
       .then((res) => {
         return res.data;
       })
-      .catch((e) => console.log(e.message));
   }
 }
 

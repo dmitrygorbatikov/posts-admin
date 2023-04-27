@@ -6,6 +6,8 @@ export const LoginSchema = Yup.object().shape({
     .trim()
     .email("InvalidEmail")
     .required("Required"),
+
+
   password: Yup.string()
     .min(6, "Min6")
     .max(30, "Max30")

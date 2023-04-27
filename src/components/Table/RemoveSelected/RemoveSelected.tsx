@@ -11,12 +11,14 @@ import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import * as React from "react";
+import { useTranslation } from "react-i18next";
 
 interface IRemoveSelectedProps {
   selected: string[];
   removeList: (ids: string[]) => void;
 }
 const RemoveSelected: FC<IRemoveSelectedProps> = ({ removeList, selected }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState<boolean>(false);
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
@@ -32,14 +34,14 @@ const RemoveSelected: FC<IRemoveSelectedProps> = ({ removeList, selected }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          Are you sure that you want to delete this items ?
+          {t("Posts.AreYouSureDelBtn")}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description"></DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button variant={"outlined"} onClick={handleClose}>
-            Cancel
+            {t("Posts.Cancel")}
           </Button>
           <Button
             variant={"contained"}
@@ -48,7 +50,7 @@ const RemoveSelected: FC<IRemoveSelectedProps> = ({ removeList, selected }) => {
               handleClose();
             }}
           >
-            Delete
+            {t("Posts.Delete")}
           </Button>
         </DialogActions>
       </Dialog>

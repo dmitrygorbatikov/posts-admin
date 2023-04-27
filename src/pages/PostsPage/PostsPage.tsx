@@ -1,32 +1,40 @@
 import React, { FC, useEffect } from "react";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { observer } from "mobx-react";
-import PostStore from "../mobx/post";
-import TableComponent from "../components/Table/TableComponent";
-import Spinner from "../components/Spinner";
-import { IPostFilter } from "../mobx/post/types";
-import PostHeader from "../components/Post/PostHeader";
+import PostStore from "../../mobx/post";
+import TableComponent from "../../components/Table/TableComponent/TableComponent";
+import Spinner from "../../components/Spinner/Spinner";
+import { IPostFilter } from "../../mobx/post/types";
+import PostHeader from "./PostHeader/PostHeader";
+import { ITableHeaderProps } from "../../types";
+import { useTranslation } from "react-i18next";
 const PostsPage: FC = () => {
   const {
-    posts,
-    getPosts,
-    filters,
-    setFilters,
-    loading,
     count,
+    posts,
+    loading,
+    filters,
+    selected,
+    postLoading,
+    createPostErrors,
+    updatePostErrors,
+    getPosts,
     createPost,
     updatePost,
     removeList,
+    setFilters,
     setSelected,
-    selected,
-    postLoading,
+    clearErrors,
   } = PostStore;
-  const headers = {
-    title: { name: "Title", sort: true },
-    link: { name: "Link" },
-    description: { name: "Description", sort: true },
-    pubDate: { name: "Pub date", sort: true },
-    created_at: { name: "Created at", sort: true },
+
+  const { t } = useTranslation();
+
+  const headers: ITableHeaderProps = {
+    title: { name: t("Posts.Title"), sort: true },
+    link: { name: t("Posts.Link") },
+    description: { name: t("Posts.Description"), sort: true },
+    pubDate: { name: t("Posts.PubDate"), sort: true, isDate: true },
+    created_at: { name: t("Posts.CreatedAt"), sort: true, isDate: true },
   };
 
   useEffect(() => {
@@ -52,8 +60,11 @@ const PostsPage: FC = () => {
   return (
     <Box>
       {loading && <Spinner />}
-
       <PostHeader
+        setSelected={setSelected}
+        createPostErrors={createPostErrors}
+        updatePostErrors={updatePostErrors}
+        clearErrors={clearErrors}
         posts={posts}
         createPost={createPost}
         getPosts={getPosts}
@@ -63,7 +74,6 @@ const PostsPage: FC = () => {
         updatePost={updatePost}
         removeList={removeList}
       />
-
       <TableComponent
         rows={posts}
         count={count}

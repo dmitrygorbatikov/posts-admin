@@ -5,12 +5,16 @@ import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import * as React from "react";
 import { FC } from "react";
-import RemoveSelected from "./RemoveSelected";
+import RemoveSelected from "../RemoveSelected/RemoveSelected";
+import styles from "./TableToolbar.module.scss";
+import { useTranslation } from "react-i18next";
+
 interface ITableToolbarProps {
   selected: string[];
   removeList: (ids: string[]) => void;
 }
 const TableToolbar: FC<ITableToolbarProps> = ({ removeList, selected }) => {
+  const { t } = useTranslation();
   const numSelected = selected.length;
 
   return (
@@ -29,20 +33,14 @@ const TableToolbar: FC<ITableToolbarProps> = ({ removeList, selected }) => {
       }}
     >
       {numSelected > 0 && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignitems: "center",
-          }}
-        >
+        <Box className={styles.container}>
           <Typography
-            sx={{ flex: "1 1 100%" }}
+            className={styles.container__title}
             color="inherit"
             variant="subtitle1"
             component="div"
           >
-            {numSelected} selected
+            {numSelected} {t("Posts.Selected")}
           </Typography>
           <Tooltip title="Delete">
             <RemoveSelected removeList={removeList} selected={selected} />
