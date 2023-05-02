@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  devit_group_client:
+    container_name: devit_group_client
+    build:
+      context: .
+    restart: unless-stopped
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+      - REACT_APP_PORT=${REACT_APP_PORT}
