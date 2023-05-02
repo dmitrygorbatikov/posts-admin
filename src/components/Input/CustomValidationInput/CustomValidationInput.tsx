@@ -1,16 +1,15 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from 'react';
 import {
   FormControl,
   InputLabel,
   OutlinedInput,
   Typography,
-} from "@mui/material";
-import { Field } from "formik";
-import * as React from "react";
-import { observer } from "mobx-react";
-import Box from "@mui/material/Box";
-import { IRequestError } from "../../../types";
-import { useTranslation } from "react-i18next";
+} from '@mui/material';
+import { Field } from 'formik';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { IRequestError } from '../../../types';
+import { useTranslation } from 'react-i18next';
 
 interface ICustomOutlinedInputProps {
   formControlProps: any;
@@ -44,7 +43,7 @@ const CustomValidationInput: FC<ICustomOutlinedInputProps> = ({
   width,
   clearErrors,
 }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -57,10 +56,10 @@ const CustomValidationInput: FC<ICustomOutlinedInputProps> = ({
         {(value: any) => (
           <Box>
             <OutlinedInput
-              sx={{ width: width ? width : "auto" }}
+              sx={{ width: width ? width : 'auto' }}
               multiline={multiline}
               rows={rows}
-              type={numeric ? "number" : type ? type : "text"}
+              type={numeric ? 'number' : type ? type : 'text'}
               value={value.field.value}
               onChange={(e) => {
                 if (
@@ -78,7 +77,7 @@ const CustomValidationInput: FC<ICustomOutlinedInputProps> = ({
                 value.form.setFieldTouched(fieldName, true);
                 onBlur && (await onBlur(value));
               }}
-              onFocus={(e) => {
+              onFocus={() => {
                 setFocus && setFocus(true);
               }}
               label={label}
@@ -93,7 +92,7 @@ const CustomValidationInput: FC<ICustomOutlinedInputProps> = ({
             {hasErrors ||
               (value.form.touched[fieldName] &&
                 Boolean(value.form.errors[fieldName]) && (
-                  <Typography color={"error"}>
+                  <Typography color={'error'}>
                     {t(
                       `Errors.${
                         value.form.errors[fieldName] ??
@@ -103,7 +102,7 @@ const CustomValidationInput: FC<ICustomOutlinedInputProps> = ({
                   </Typography>
                 ))}
             {errors && errors[fieldName] && (
-              <Typography color={"error"}>
+              <Typography color={'error'}>
                 {t(`Errors.${errors[fieldName]}`)}
               </Typography>
             )}

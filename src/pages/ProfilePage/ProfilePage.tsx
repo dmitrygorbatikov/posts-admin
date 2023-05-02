@@ -1,11 +1,11 @@
-import React, { FC, useEffect } from "react";
-import { observer } from "mobx-react";
-import { Box } from "@mui/material";
-import UserStore from "../../mobx/user";
-import Spinner from "../../components/Spinner/Spinner";
-import UserProfileComponent from "./UserProfileComponent/UserProfileComponent";
-import ChangePassword from "./ChangePassword/ChangePassword";
-import styles from "./ProfilePage.module.scss";
+import React, { FC, useEffect } from 'react';
+import { observer } from 'mobx-react';
+import { Box } from '@mui/material';
+import UserStore from '../../mobx/user';
+import Spinner from '../../components/Spinner/Spinner';
+import UserProfileComponent from './UserProfileComponent/UserProfileComponent';
+import ChangePassword from './ChangePassword/ChangePassword';
+import styles from './ProfilePage.module.scss';
 
 const ProfilePage: FC = () => {
   const {

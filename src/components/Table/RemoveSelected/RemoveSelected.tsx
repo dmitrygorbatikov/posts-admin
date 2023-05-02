@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState } from 'react';
 import {
   Button,
   Dialog,
@@ -6,12 +6,12 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
-import Box from "@mui/material/Box";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
-import * as React from "react";
-import { useTranslation } from "react-i18next";
+} from '@mui/material';
+import Box from '@mui/material/Box';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface IRemoveSelectedProps {
   selected: string[];
@@ -30,27 +30,27 @@ const RemoveSelected: FC<IRemoveSelectedProps> = ({ removeList, selected }) => {
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id="alert-dialog-title">
-          {t("Posts.AreYouSureDelBtn")}
+        <DialogTitle id='alert-dialog-title'>
+          {t('Posts.AreYouSureDelBtn')}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description"></DialogContentText>
+          <DialogContentText id='alert-dialog-description'></DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant={"outlined"} onClick={handleClose}>
-            {t("Posts.Cancel")}
+          <Button variant={'outlined'} onClick={handleClose}>
+            {t('Posts.Cancel')}
           </Button>
           <Button
-            variant={"contained"}
+            variant={'contained'}
             onClick={async () => {
               await removeList(selected);
               handleClose();
             }}
           >
-            {t("Posts.Delete")}
+            {t('Posts.Delete')}
           </Button>
         </DialogActions>
       </Dialog>

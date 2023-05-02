@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   ICreatePostBody,
   IPost,
   IPostFilter,
   IUpdatePostBody,
-} from "../mobx/post/types";
-import { createQuery } from "../utils";
-import TokenService from "./token.service";
+} from '../mobx/post/types';
+import { createQuery } from '../utils';
+import TokenService from './token.service';
 
 class PostServices {
   private baseUrl = `${process.env.REACT_APP_API_URL}/post`;
@@ -44,8 +44,8 @@ class PostServices {
 
   async removePostList(ids: string[]) {
     return axios
-      .delete(this.baseUrl + "/list", {
-        params: { ids: ids.join(",") },
+      .delete(this.baseUrl + '/list', {
+        params: { ids: ids.join(',') },
         headers: TokenService.getHeaders(),
       })
       .then((res) => {

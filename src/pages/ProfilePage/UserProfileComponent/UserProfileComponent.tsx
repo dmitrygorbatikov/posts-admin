@@ -1,15 +1,15 @@
-import React, { Dispatch, FC, useState } from "react";
-import { Box, Button, IconButton, Typography } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import ClearIcon from "@mui/icons-material/Clear";
-import { Formik } from "formik";
-import { ChangeProfileSchema } from "../../../validation/profile";
-import CustomValidationInput from "../../../components/Input/CustomValidationInput/CustomValidationInput";
-import moment from "moment";
-import { IChangeProfile, IUser } from "../../../mobx/user/types";
-import { IRequestError } from "../../../types";
-import styles from "./UserProfileComponent.module.scss";
-import { useTranslation } from "react-i18next";
+import React, { FC, useState } from 'react';
+import { Box, Button, IconButton, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Formik } from 'formik';
+import { ChangeProfileSchema } from '../../../validation/profile';
+import CustomValidationInput from '../../../components/Input/CustomValidationInput/CustomValidationInput';
+import moment from 'moment';
+import { IChangeProfile, IUser } from '../../../mobx/user/types';
+import { IRequestError } from '../../../types';
+import styles from './UserProfileComponent.module.scss';
+import { useTranslation } from 'react-i18next';
 interface IUserProfileComponentProps {
   user: IUser;
   changeProfileErrors?: IRequestError;
@@ -28,7 +28,7 @@ const UserProfileComponent: FC<IUserProfileComponentProps> = ({
   return (
     <Box>
       <Box className={styles.header_container}>
-        <Typography variant={"h4"}>{t("Profile.Title")}</Typography>
+        <Typography variant={'h4'}>{t('Profile.Title')}</Typography>
         {!isEditProfile ? (
           <IconButton onClick={() => setIsEditProfile(true)}>
             <EditIcon />
@@ -57,23 +57,23 @@ const UserProfileComponent: FC<IUserProfileComponentProps> = ({
                   <CustomValidationInput
                     clearErrors={clearErrors}
                     errors={changeProfileErrors}
-                    formControlProps={{ sx: { mb: 2, display: "block" } }}
-                    label={t("Profile.NameLabel")}
-                    fieldName={"name"}
+                    formControlProps={{ sx: { mb: 2, display: 'block' } }}
+                    label={t('Profile.NameLabel')}
+                    fieldName={'name'}
                   />
                   <CustomValidationInput
                     clearErrors={clearErrors}
                     errors={changeProfileErrors}
-                    formControlProps={{ sx: { mb: 2, display: "block" } }}
-                    label={t("Profile.EmailLabel")}
-                    fieldName={"email"}
+                    formControlProps={{ sx: { mb: 2, display: 'block' } }}
+                    label={t('Profile.EmailLabel')}
+                    fieldName={'email'}
                   />
                   <Typography>
-                    {t("Profile.CreatedAt")}
-                    {moment(user.created_at).format("DD.MM.YY")}
+                    {t('Profile.CreatedAt')}
+                    {moment(user.created_at).format('DD.MM.YY')}
                   </Typography>
-                  <Button variant={"contained"} onClick={() => handleSubmit()}>
-                    {t("Profile.Save")}
+                  <Button variant={'contained'} onClick={() => handleSubmit()}>
+                    {t('Profile.Save')}
                   </Button>
                 </Box>
               );
@@ -83,14 +83,14 @@ const UserProfileComponent: FC<IUserProfileComponentProps> = ({
         {!isEditProfile && (
           <Box>
             <Typography>
-              {t("Profile.Name")}: {user.name}
+              {t('Profile.Name')}: {user.name}
             </Typography>
             <Typography>
-              {t("Profile.Email")}: {user.email}
+              {t('Profile.Email')}: {user.email}
             </Typography>
             <Typography>
-              {t("Profile.CreatedAt")}:
-              {moment(user.created_at).format("DD.MM.YY")}
+              {t('Profile.CreatedAt')}:
+              {moment(user.created_at).format('DD.MM.YY')}
             </Typography>
           </Box>
         )}

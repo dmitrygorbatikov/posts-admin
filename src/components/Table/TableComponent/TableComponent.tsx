@@ -1,18 +1,18 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TablePagination from "@mui/material/TablePagination";
-import Paper from "@mui/material/Paper";
-import { FC, useEffect, useState } from "react";
-import TableHeader from "../TableHeader/TableHeader";
-import CustomInput from "../../Input/CustomInput/CustomInput";
-import TableBodyComponent from "../TableBodyComponent/TableBodyComponent";
-import { Typography } from "@mui/material";
-import { ITableHeaderProps } from "../../../types";
-import styles from "./TableComponent.module.scss";
-import { useTranslation } from "react-i18next";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TablePagination from '@mui/material/TablePagination';
+import Paper from '@mui/material/Paper';
+import { FC, useEffect, useState } from 'react';
+import TableHeader from '../TableHeader/TableHeader';
+import CustomInput from '../../Input/CustomInput/CustomInput';
+import TableBodyComponent from '../TableBodyComponent/TableBodyComponent';
+import { TableRow, Typography } from '@mui/material';
+import { ITableHeaderProps } from '../../../types';
+import styles from './TableComponent.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface ITableComponentProps {
   rows: any[];
@@ -41,7 +41,31 @@ const TableComponent: FC<ITableComponentProps> = ({
     delete _item.__v;
     return _item;
   });
-  const [pageInput, setPageInput] = useState("0");
+  const [pageInput, setPageInput] = useState('0');
+
+  const isSelected = (link: string) => {
+    return selected.indexOf(link) !== -1;
+  };
+
+  const handleClickRow = (event: React.MouseEvent<unknown>, _id: string) => {
+    const selectedIndex = selected.indexOf(_id);
+    let newSelected: string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, _id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelected(newSelected);
+  };
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -80,8 +104,8 @@ const TableComponent: FC<ITableComponentProps> = ({
             <TableContainer>
               <Table
                 className={styles.container__table}
-                aria-labelledby="tableTitle"
-                size={"medium"}
+                aria-labelledby='tableTitle'
+                size={'medium'}
               >
                 <TableHeader
                   numSelected={selected.length}
@@ -93,14 +117,29 @@ const TableComponent: FC<ITableComponentProps> = ({
                 />
                 <TableBody>
                   {rows.map((row, index) => {
+                    const isItemSelected = isSelected(row._id);
+                    const labelId = `enhanced-table-checkbox-${index}`;
                     return (
-                      <TableBodyComponent
-                        header={header}
-                        row={row}
-                        selected={selected}
-                        setSelected={setSelected}
-                        index={index}
-                      />
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClickRow(event, row._id)}
+                        role='checkbox'
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row._id}
+                        selected={isItemSelected}
+                        className={styles.row}
+                      >
+                        <TableBodyComponent
+                          isItemSelected={isItemSelected}
+                          labelId={labelId}
+                          header={header}
+                          row={row}
+                          selected={selected}
+                          setSelected={setSelected}
+                          index={index}
+                        />
+                      </TableRow>
                     );
                   })}
                 </TableBody>
@@ -109,21 +148,21 @@ const TableComponent: FC<ITableComponentProps> = ({
             <Box
               className={styles.container__pagination}
               sx={{
-                pointerEvents: selected.length === 1 ? "none" : "auto",
+                pointerEvents: selected.length === 1 ? 'none' : 'auto',
               }}
             >
               <CustomInput
                 className={styles.container__pagination__input}
                 value={pageInput}
-                label={t("Posts.Page")}
+                label={t('Posts.Page')}
                 changeHandler={(e) => setPageInput(e.target.value)}
                 handleSubmit={() => handleChangePage(Number(pageInput))}
               />
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25]}
-                component="div"
+                component='div'
                 count={count}
-                labelRowsPerPage={t("Posts.RowsPerPage")}
+                labelRowsPerPage={t('Posts.RowsPerPage')}
                 rowsPerPage={Number(filters.perPage)}
                 page={Number(filters.page)}
                 onPageChange={(event, newPage) => handleChangePage(newPage)}

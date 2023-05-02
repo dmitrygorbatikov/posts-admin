@@ -1,6 +1,5 @@
-import React, { FC, useState } from "react";
-import Box from "@mui/material/Box";
-import Spinner from "../../../../components/Spinner/Spinner";
+import React, { FC, useState } from 'react';
+import Box from '@mui/material/Box';
 import {
   Button,
   Dialog,
@@ -8,13 +7,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
-import { Formik } from "formik";
-import { DialogPostSchema } from "../../../../validation/post";
-import CustomValidationInput from "../../../../components/Input/CustomValidationInput/CustomValidationInput";
-import { IRequestError } from "../../../../types";
-import styles from "./PostDialog.module.scss";
-import { useTranslation } from "react-i18next";
+} from '@mui/material';
+import { Formik } from 'formik';
+import { DialogPostSchema } from '../../../../validation/post';
+import CustomValidationInput from '../../../../components/Input/CustomValidationInput/CustomValidationInput';
+import { IRequestError } from '../../../../types';
+import styles from './PostDialog.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface IPostDialogProps {
   loading: boolean;
@@ -30,8 +29,8 @@ interface IPostDialogProps {
   dialogTitle: string;
   submitButtonText: string;
   openDialogBtnText: string;
-  colorDialogBtn: "success" | "inherit";
-  variantDialogBtn: "contained" | "outlined";
+  colorDialogBtn: 'success' | 'inherit';
+  variantDialogBtn: 'contained' | 'outlined';
   clearErrors: () => void;
   errors?: IRequestError;
 }
@@ -73,40 +72,40 @@ const PostDialog: FC<IPostDialogProps> = ({
             <Dialog
               open={open}
               onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
+              aria-labelledby='alert-dialog-title'
+              aria-describedby='alert-dialog-description'
             >
-              <DialogTitle id="alert-dialog-title">{dialogTitle}</DialogTitle>
+              <DialogTitle id='alert-dialog-title'>{dialogTitle}</DialogTitle>
               <DialogContent>
-                <DialogContentText id="alert-dialog-description">
+                <DialogContentText id='alert-dialog-description'>
                   <CustomValidationInput
                     errors={errors}
                     clearErrors={clearErrors}
-                    fieldName={"title"}
-                    label={t("Posts.Title")}
+                    fieldName={'title'}
+                    label={t('Posts.Title')}
                     formControlProps={{ sx: { m: 2 } }}
                   />
                   <CustomValidationInput
                     errors={errors}
                     clearErrors={clearErrors}
-                    fieldName={"description"}
-                    label={t("Posts.Description")}
+                    fieldName={'description'}
+                    label={t('Posts.Description')}
                     formControlProps={{ sx: { m: 2 } }}
                   />
                   <CustomValidationInput
                     errors={errors}
                     clearErrors={clearErrors}
-                    fieldName={"link"}
-                    label={t("Posts.Link")}
+                    fieldName={'link'}
+                    label={t('Posts.Link')}
                     formControlProps={{ sx: { m: 2 } }}
                   />
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button variant={"outlined"} onClick={handleClose}>
-                  {t("Posts.Cancel")}
+                <Button variant={'outlined'} onClick={handleClose}>
+                  {t('Posts.Cancel')}
                 </Button>
-                <Button variant={"contained"} onClick={() => handleSubmit()}>
+                <Button variant={'contained'} onClick={() => handleSubmit()}>
                   {submitButtonText}
                 </Button>
               </DialogActions>

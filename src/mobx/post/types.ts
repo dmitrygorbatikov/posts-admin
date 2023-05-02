@@ -32,14 +32,14 @@ export interface IPostFilter {
 }
 
 export enum SortNamesEnum {
-  title = "title",
-  link = "link",
-  description = "description",
-  pubDate = "pubDate",
-  created_at = "created_at",
+  title = 'title',
+  link = 'link',
+  description = 'description',
+  pubDate = 'pubDate',
+  created_at = 'created_at',
 }
 
 export enum SortEnum {
-  ASC = "ASC",
-  DESC = "DESC",
+  ASC = 'ASC',
+  DESC = 'DESC',
 }
