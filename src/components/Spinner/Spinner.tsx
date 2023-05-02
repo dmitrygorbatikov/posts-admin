@@ -1,11 +1,11 @@
-import React, { FC } from "react";
-import { Box, CircularProgress } from "@mui/material";
-import styles from "./Spinner.module.scss";
+import React, { FC } from 'react';
+import { Box, CircularProgress } from '@mui/material';
+import styles from './Spinner.module.scss';
 
 const Spinner: FC = () => {
   return (
     <Box className={styles.container}>
-      <CircularProgress color="inherit" />
+      <CircularProgress color='inherit' />
     </Box>
   );
 };

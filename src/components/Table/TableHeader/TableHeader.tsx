@@ -1,14 +1,14 @@
-import * as React from "react";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import Checkbox from "@mui/material/Checkbox";
-import TableSortLabel from "@mui/material/TableSortLabel";
-import Box from "@mui/material/Box";
-import { visuallyHidden } from "@mui/utils";
-import { FC } from "react";
-import { SortEnum } from "../../../mobx/post/types";
-import styles from "./TableHeader.module.scss";
+import * as React from 'react';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import Checkbox from '@mui/material/Checkbox';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import Box from '@mui/material/Box';
+import { visuallyHidden } from '@mui/utils';
+import { FC } from 'react';
+import { SortEnum } from '../../../mobx/post/types';
+import styles from './TableHeader.module.scss';
 
 interface ITableHeaderProps {
   header: { [key: string]: { name: string; sort?: boolean; isDate?: boolean } };
@@ -38,7 +38,7 @@ const TableHeader: FC<ITableHeaderProps> = (props: ITableHeaderProps) => {
       sort:
         sortBy !== field
           ? SortEnum.ASC
-          : sort === "asc"
+          : sort === 'asc'
           ? SortEnum.DESC
           : SortEnum.ASC,
     };
@@ -49,14 +49,14 @@ const TableHeader: FC<ITableHeaderProps> = (props: ITableHeaderProps) => {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding='checkbox'>
           <Checkbox
-            color="primary"
+            color='primary'
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              "aria-label": "select all desserts",
+              'aria-label': 'select all desserts',
             }}
           />
         </TableCell>
@@ -65,22 +65,22 @@ const TableHeader: FC<ITableHeaderProps> = (props: ITableHeaderProps) => {
             return (
               <TableCell
                 key={header[field].name}
-                align={"right"}
-                padding={"normal"}
+                align={'right'}
+                padding={'normal'}
                 sortDirection={sortBy === header[field].name ? sort : false}
               >
                 <TableSortLabel
                   className={styles.header_text}
                   active={sortBy === field}
-                  direction={sortBy === field ? sort : "asc"}
+                  direction={sortBy === field ? sort : 'asc'}
                   onClick={() => sortData(field)}
                 >
                   {header[field].name}
                   {sortBy === field ? (
-                    <Box component="span" sx={visuallyHidden}>
-                      {sort === "desc"
-                        ? "sorted descending"
-                        : "sorted ascending"}
+                    <Box component='span' sx={visuallyHidden}>
+                      {sort === 'desc'
+                        ? 'sorted descending'
+                        : 'sorted ascending'}
                     </Box>
                   ) : null}
                 </TableSortLabel>
@@ -91,8 +91,8 @@ const TableHeader: FC<ITableHeaderProps> = (props: ITableHeaderProps) => {
             <TableCell
               className={styles.header_text}
               key={header[field].name}
-              align={"right"}
-              padding={"normal"}
+              align={'right'}
+              padding={'normal'}
             >
               {header[field].name}
             </TableCell>

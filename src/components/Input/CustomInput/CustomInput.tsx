@@ -1,7 +1,6 @@
-import { ReactNode, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Box, FilledInput, FormControl, InputLabel } from "@mui/material";
-import styles from "./CustomInput.module.scss";
+import React, { ReactNode } from 'react';
+import { FilledInput, FormControl, InputLabel } from '@mui/material';
+import styles from './CustomInput.module.scss';
 
 type Props = {
   type?: string;
@@ -35,7 +34,7 @@ const CustomInput = ({
   className,
 }: Props): JSX.Element => {
   return (
-    <FormControl className={`${styles.default} ${className}`} variant="filled">
+    <FormControl className={`${styles.default} ${className}`} variant='filled'>
       <InputLabel>{label}</InputLabel>
       <FilledInput
         fullWidth
@@ -48,7 +47,7 @@ const CustomInput = ({
         onFocus={onFocus}
         onBlur={onBlur}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             handleSubmit && handleSubmit();
           }
         }}

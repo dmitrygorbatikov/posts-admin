@@ -7,16 +7,16 @@ export interface IUser {
   updated_at: Date;
 }
 export enum UserRoleEnum {
-  user = "user",
-  admin = "admin",
+  user = 'user',
+  admin = 'admin',
 }
 
 export interface IChangePasswordBody {
-  oldPassword: string
-  newPassword: string
+  oldPassword: string;
+  newPassword: string;
 }
 
 export interface IChangeProfile {
-  name: string
-  email: string
+  name: string;
+  email: string;
 }

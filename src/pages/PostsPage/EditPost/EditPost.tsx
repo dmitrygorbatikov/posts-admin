@@ -1,8 +1,6 @@
-import { FC, useState } from "react";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import * as React from "react";
-import EditIcon from "@mui/icons-material/Edit";
+import { FC, useState } from 'react';
+import Box from '@mui/material/Box';
+import * as React from 'react';
 import {
   Button,
   Dialog,
@@ -10,7 +8,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material";
+} from '@mui/material';
 
 const EditPost: FC = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -18,25 +16,25 @@ const EditPost: FC = () => {
   const handleOpen = () => setOpen(true);
   return (
     <Box sx={{ mr: 2 }}>
-      <Button onClick={handleOpen} variant={"outlined"} color={"secondary"}>
+      <Button onClick={handleOpen} variant={'outlined'} color={'secondary'}>
         Edit
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id="alert-dialog-title">Edit post</DialogTitle>
+        <DialogTitle id='alert-dialog-title'>Edit post</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description"></DialogContentText>
+          <DialogContentText id='alert-dialog-description'></DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant={"outlined"} onClick={handleClose}>
+          <Button variant={'outlined'} onClick={handleClose}>
             Cancel
           </Button>
           <Button
-            variant={"contained"}
+            variant={'contained'}
             onClick={async () => {
               handleClose();
             }}

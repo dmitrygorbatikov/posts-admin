@@ -1,11 +1,10 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
-import CustomInput from "../../../../components/Input/CustomInput/CustomInput";
-import { debounce } from "lodash";
-import { IPostFilter } from "../../../../mobx/post/types";
-import { InputAdornment } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import styles from "./SearchPost.module.scss";
-import { useTranslation } from "react-i18next";
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import CustomInput from '../../../../components/Input/CustomInput/CustomInput';
+import { debounce } from 'lodash';
+import { IPostFilter } from '../../../../mobx/post/types';
+import { InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { useTranslation } from 'react-i18next';
 
 interface ISearchPostProps {
   filters: IPostFilter;
@@ -19,7 +18,7 @@ const SearchPost: FC<ISearchPostProps> = ({
   setSelected,
 }) => {
   const { t } = useTranslation();
-  const [search, setSearch] = useState<string>(filters.search || "");
+  const [search, setSearch] = useState<string>(filters.search || '');
   const handleInput = useCallback(
     debounce((value: string) => {
       const newFilters = {
@@ -32,18 +31,18 @@ const SearchPost: FC<ISearchPostProps> = ({
   );
 
   useEffect(() => {
-    setSearch(filters.search || "");
+    setSearch(filters.search || '');
   }, [filters.search]);
 
   return (
     <CustomInput
       endAdornment={
-        <InputAdornment position="end">
+        <InputAdornment position='end'>
           <SearchIcon />
         </InputAdornment>
       }
       value={search}
-      label={t("Posts.Search")}
+      label={t('Posts.Search')}
       changeHandler={(e) => {
         setSelected([]);
         setSearch(e.target.value);

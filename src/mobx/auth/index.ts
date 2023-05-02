@@ -1,12 +1,12 @@
-import { makeAutoObservable } from "mobx";
-import { ISignInUserBody } from "./types";
-import AuthServices from "../../services/auth.services";
-import { IRequestError } from "../../types";
-import TokenService from "../../services/token.service";
+import { makeAutoObservable } from 'mobx';
+import { ISignInUserBody } from './types';
+import AuthServices from '../../services/auth.services';
+import { IRequestError } from '../../types';
+import TokenService from '../../services/token.service';
 
 class AuthStore {
   accessToken: string | null = TokenService.getToken();
-  loading: boolean = false;
+  loading = false;
   loginErrors?: IRequestError;
   constructor() {
     makeAutoObservable(this, {}, {});
@@ -25,7 +25,7 @@ class AuthStore {
         this.logoutUser();
         document.location.reload();
       } else if (e.response.data.details) {
-        this.loginErrors = { email: "EmailMustBeAValidEmail" };
+        this.loginErrors = { email: 'EmailMustBeAValidEmail' };
       } else {
         console.log(e);
         this.loginErrors = e.response.data;

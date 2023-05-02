@@ -1,4 +1,3 @@
-
 ## Installation
 
 ```bash
@@ -9,6 +8,8 @@ $ pnpm install
 
 rename `.env.sample` to `.env`
 
+then start docker-compose
+
 ```bash
-$ pnpm start
+$ docker-compose up -d
 ```

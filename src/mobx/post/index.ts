@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 import {
   ICreatePostBody,
   IPost,
@@ -6,27 +6,27 @@ import {
   IUpdatePostBody,
   SortEnum,
   SortNamesEnum,
-} from "./types";
-import PostServices from "../../services/post.services";
-import { createQuery } from "../../utils";
-import AuthStore from "../auth";
-import { IRequestError } from "../../types";
+} from './types';
+import PostServices from '../../services/post.services';
+import { createQuery } from '../../utils';
+import AuthStore from '../auth';
+import { IRequestError } from '../../types';
 
 class PostStore {
   posts: IPost[] = [];
-  loading: boolean = false;
-  postLoading: boolean = false;
+  loading = false;
+  postLoading = false;
   filters: IPostFilter = {
-    page: "0",
-    perPage: "10",
+    page: '0',
+    perPage: '10',
     sortBy: SortNamesEnum.pubDate,
     sort: SortEnum.ASC,
-    search: "",
+    search: '',
     dateFrom: undefined,
     dateTo: undefined,
   };
   selected: string[] = [];
-  count: number = 0;
+  count = 0;
   createPostErrors?: IRequestError;
   updatePostErrors?: IRequestError;
   constructor() {
@@ -49,7 +49,7 @@ class PostStore {
 
   setFilters = (filters: IPostFilter) => {
     const newUrl = `${window.location.pathname}${createQuery(filters)}`;
-    window.history.pushState(null, "", newUrl);
+    window.history.pushState(null, '', newUrl);
 
     this.filters = filters;
   };
@@ -63,7 +63,7 @@ class PostStore {
         sort: SortEnum.DESC,
         sortBy: SortNamesEnum.created_at,
         search: undefined,
-        page: "0",
+        page: '0',
       });
       this.setSelected([]);
       cb();

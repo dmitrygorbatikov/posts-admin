@@ -5,15 +5,15 @@ class TokenService {
     };
   }
   getToken() {
-    return localStorage.getItem("accessToken");
+    return localStorage.getItem('accessToken');
   }
 
   setToken(accessToken: string) {
-    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem('accessToken', accessToken);
   }
 
   removeToken() {
-    localStorage.removeItem("accessToken");
+    localStorage.removeItem('accessToken');
   }
 }
 

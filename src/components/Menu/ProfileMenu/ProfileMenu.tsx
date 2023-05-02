@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import styles from "./ProfileMenu.module.scss";
+import React, { FC } from 'react';
+import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import { AccountCircle } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import styles from './ProfileMenu.module.scss';
 interface IProfileMenuProps {
   logoutUser: () => void;
 }
@@ -22,38 +22,38 @@ const ProfileMenu: FC<IProfileMenuProps> = ({ logoutUser }) => {
   return (
     <div>
       <IconButton
-        size="large"
-        edge="end"
-        aria-label="change language"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
+        size='large'
+        edge='end'
+        aria-label='change language'
+        aria-controls='menu-appbar'
+        aria-haspopup='true'
         onClick={handleMenu}
-        color="inherit"
+        color='inherit'
       >
         <AccountCircle />
       </IconButton>
       <Menu
-        id="menu-appbar"
+        id='menu-appbar'
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
         keepMounted
         transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-          <Link className={styles.profileLink} to={"/profile"}>
-            {t("Menu.Profile")}
+          <Link className={styles.profileLink} to={'/profile'}>
+            {t('Menu.Profile')}
           </Link>
         </MenuItem>
         <MenuItem onClick={logoutUser}>
-          <Box>{t("Menu.Logout")}</Box>
+          <Box>{t('Menu.Logout')}</Box>
         </MenuItem>
       </Menu>
     </div>
