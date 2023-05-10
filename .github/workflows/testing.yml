@@ -1,12 +1,23 @@
-name: Test Posts Admin
+name: deploy-staging
 on: workflow_dispatch
 jobs:
-  testing:
+  deploy:
     runs-on: ubuntu-latest
     steps: 
-      - name: Get access to code
+      - name: Get code access
         uses: actions/checkout@v3
-      - name: Install dependencies
-        run: npm install pnpm -g
-      - name: Install dependencies
-        run: pnpm install
+      - name: Add public key
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan 207.154.247.218 >> ~/.ssh/known_hosts
+      - name: Deploy to staging
+        uses: easingthemes/ssh-action@v2.1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+          host: 207.154.247.218
+          username: root
+          script: |
+            ssh root@207.154.247.218
+            cd ~/app/UF-Frontend/
+            git pull
+            cp -r ~/app/UF-Frontend/build/* /var/www/html/react
