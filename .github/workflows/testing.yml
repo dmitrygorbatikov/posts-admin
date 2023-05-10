@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Get code access
-        uses: actions/checkout@v2.4.3
+        uses: actions/checkout@v3
       - name: Add public key
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan 16.171.53.102 >> ~/.ssh/known_hosts
       - name: Deploy to staging
-        uses: easingthemes/ssh-action@v2.1.1
+        uses: appleboy/ssh-action@master
         with:
           ssh-private-key: ${{ secrets.AWS_PRIVATE_KEY }}
           host: 16.171.53.102
