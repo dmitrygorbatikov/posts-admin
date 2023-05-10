@@ -1,23 +1,26 @@
 name: deploy-staging
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps: 
       - name: Get code access
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2.4.3
       - name: Add public key
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan 207.154.247.218 >> ~/.ssh/known_hosts
+          ssh-keyscan 16.171.53.102 >> ~/.ssh/known_hosts
       - name: Deploy to staging
         uses: easingthemes/ssh-action@v2.1.1
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
-          host: 207.154.247.218
-          username: root
+          ssh-private-key: ${{ secrets.AWS_PRIVATE_KEY }}
+          host: 16.171.53.102
+          username: ubuntu
           script: |
-            ssh root@207.154.247.218
-            cd ~/app/UF-Frontend/
-            git pull
-            cp -r ~/app/UF-Frontend/build/* /var/www/html/react
+            cd /var/www/html
+            git clone git@github.com:<USERNAME>/<REPOSITORY_NAME>.git
+            cd <REPOSITORY_NAME>
+            npm install
+            npm run build
